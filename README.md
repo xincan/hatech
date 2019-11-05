@@ -46,14 +46,14 @@
 #### 1. 用户登录获取token
 发送POST请求到 http://localhost:8040/api/auth/oauth/token, 
 
-其中body中传入以下参数:
-
 header中配置basic auth类型的参数如下:
 
 |类型         |值           |说明          |
 |----------------|-----------|-----------|
 |`username`|`hatech-app-demo`|微服务的clientId|
 |`password`|`123456`|微服务的clientSecret|
+
+其中body中传入以下参数:
 
 |key      |value       |说明      |
 |----------------|-----------|-----------|
