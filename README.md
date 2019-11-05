@@ -42,17 +42,11 @@
 1：hatech-auth-server添加spring-boot-starter-webflux、spring-cloud-starter-oauth2、spring-boot-starter-data-jpa，开发鉴权认证基础服务
 
 ## 微服务间调用
-### 一. 用户登录获取token
+### 一. 获取token
+#### 1. 用户登录获取token
 发送POST请求到 http://localhost:8040/api/auth/oauth/token, 
 
 其中body中传入以下参数:
-
-|key      |value       |说明      |
-|----------------|-----------|-----------|
-|`grant_type`|`password`|oauth2.0鉴权类型, 这里采用password类型|
-|`username`|`zhangsan`|用户名, 登录系统所用的用户名|
-|`password`|`123456`|密码, 登录系统所用的密码|
-|`scope`|`server`|scope用来限制访问的范围. 即下面header中设置的hatech-app-demo微服务所拥有的scope|
 
 header中配置basic auth类型的参数如下:
 
@@ -60,6 +54,13 @@ header中配置basic auth类型的参数如下:
 |----------------|-----------|-----------|
 |`username`|`hatech-app-demo`|微服务的clientId|
 |`password`|`123456`|微服务的clientSecret|
+
+|key      |value       |说明      |
+|----------------|-----------|-----------|
+|`grant_type`|`password`|oauth2.0鉴权类型, 这里采用password类型|
+|`username`|`zhangsan`|用户名, 登录系统所用的用户名|
+|`password`|`123456`|密码, 登录系统所用的密码|
+|`scope`|`server`|scope用来限制访问的范围. 即下面header中设置的hatech-app-demo微服务所拥有的scope|
 
 经过POST发送请求后, 得到的token如下
 ```text
@@ -74,11 +75,18 @@ header中配置basic auth类型的参数如下:
 ```
 其中access_token即为获取到的token, token类型为bearer, token有效期为5999秒, token的scope范围为server. 
 
-### 二. 通过refresh_token得到新的token
+#### 2. 通过refresh_token得到新的token
 
 如果第一步的token过期, 但refresh_token未过期, 则可以通过refresh_token重新生成token:
 
 发送POST请求到 http://localhost:8040/api/auth/oauth/token, 
+
+header中配置basic auth类型的参数如下:
+
+|类型         |值           |说明          |
+|----------------|-----------|-----------|
+|`username`|`hatech-app-demo`|微服务的clientId|
+|`password`|`123456`|微服务的clientSecret|
 
 其中body中传入以下参数:
 
@@ -87,13 +95,6 @@ header中配置basic auth类型的参数如下:
 |`grant_type`|`refresh_token`|oauth2.0鉴权类型, 这里采用refresh_token类型|
 |`refresh_token`|`eyJhbGci...`|第一步得到的refresh token值|
 |`scope`|`server`|scope用来限制访问范围. 即下面header中设置的hatech-app-demo微服务所拥有的scope|
-
-header中配置basic auth类型的参数如下:
-
-|类型         |值           |说明          |
-|----------------|-----------|-----------|
-|`username`|`hatech-app-demo`|微服务的clientId|
-|`password`|`123456`|微服务的clientSecret|
 
 经过POST发送请求后, 得到重新生成的token如下
 ```text
@@ -109,7 +110,7 @@ header中配置basic auth类型的参数如下:
 注: token的过期时间和refresh_token的过期时间设置在hatech-auth-server项目的application-dev.yml配置文件中:
 security.oauth2.validity.access-token-seconds配置了token的过期时间;security.oauth2.validity.refresh-token-seconds配置了refresh_token的过期时间
 
-### 三. 微服务间通过feign结合token实现相互调用
+### 二. 微服务间通过feign结合token实现相互调用
 例如, 在hatech-app-demo服务中利用第一步用户登录后得到的token, 通过feign去调用hatech-app-business服务中的接口:
 
 发送GET请求到 http://127.0.0.1:8040/api/app/demo/feign,
