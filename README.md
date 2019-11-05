@@ -52,7 +52,7 @@
 |`grant_type`|`password`|oauth2.0鉴权类型, 这里采用password类型|
 |`username`|`zhangsan`|用户名, 登录系统所用的用户名|
 |`password`|`123456`|密码, 登录系统所用的密码|
-|`scope`|`server`|clientId所对应的scope范围, 需要与下面的clientId相对应|
+|`scope`|`server`|scope用来限制访问的范围. 即下面header中设置的hatech-app-demo微服务所拥有的scope|
 
 header中配置basic auth类型的参数如下:
 
@@ -86,7 +86,7 @@ header中配置basic auth类型的参数如下:
 |----------------|-----------|-----------|
 |`grant_type`|`refresh_token`|oauth2.0鉴权类型, 这里采用refresh_token类型|
 |`refresh_token`|`eyJhbGci...`|第一步得到的refresh token值|
-|`scope`|`server`|clientId所对应的scope范围, 需要与下面的clientId相对应|
+|`scope`|`server`|scope用来限制访问范围. 即下面header中设置的hatech-app-demo微服务所拥有的scope|
 
 header中配置basic auth类型的参数如下:
 
