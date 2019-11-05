@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 同创云总工程空间包 -->
+    <parent>
+        <artifactId>hatech</artifactId>
+        <groupId>cn.com.hatech</groupId>
+        <version>1.0.0</version>
+    </parent>
+
+    <!-- 同创云应用网关、注册中心微服务集群 -->
+    <groupId>cn.com.hatech.center</groupId>
+    <artifactId>hatech-center</artifactId>
+    <name>hatech-center</name>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+    <description>hatech-center 同创云应用网关、注册中心微服务集群空间包</description>
+
+    <modules>
+
+        <!-- 同创云服务注册配置中心 -->
+        <module>hatech-center-eureka</module>
+
+        <!-- 同创云路由网关配置中心（gateway）-->
+        <module>hatech-center-gateway</module>
+
+    </modules>
+
+    <dependencies>
+
+        <!-- 引用spring-boot-test测试依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 引用项目健康检查依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+</project>

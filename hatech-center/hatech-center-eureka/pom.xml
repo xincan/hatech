@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 同创云应用网关、注册中心微服务集群 -->
+    <parent>
+        <groupId>cn.com.hatech.center</groupId>
+        <artifactId>hatech-center</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <!-- 同创云应服务注册与发现中心微服务 -->
+    <groupId>cn.com.hatech.center.eureka</groupId>
+    <artifactId>hatech-center-eureka</artifactId>
+    <name>hatech-center-eureka</name>
+    <version>1.0.0</version>
+    <description>hatech-center-eureka 同创云服务注册与发现中心</description>
+
+    <dependencies>
+        
+        <!-- eureka依赖 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+        <!-- 使用undertow服务器替代tomcat服务器 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>
