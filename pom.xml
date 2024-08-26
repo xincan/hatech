@@ -48,7 +48,7 @@
 		<alibaba.spring.boot.druid.version>1.1.13</alibaba.spring.boot.druid.version>
 
 		<!-- 斯瓦格api版本配置 -->
-		<swagger2.version>2.8.0</swagger2.version>
+		<swagger2.version>2.10.0</swagger2.version>
 
 		<!-- 日志系统版本配置 -->
 		<lombok.version>1.18.4</lombok.version>
